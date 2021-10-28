@@ -38,13 +38,12 @@ function timerStart() {
 }
 function pauseTime() {
 
-    if (suspend && started) {
+    if (suspend) {
         suspend = false;
     } else {
         suspend = true;
     }
-    barFill();
-    timeCountdown();
+
 }
 
 function stopAll() {
@@ -52,8 +51,9 @@ function stopAll() {
     timer = focusTimer;
     sessionCount = 1;
     rightDeg = 0;
-    rightBar.style.transform = `rotate(${Math.round(rightDeg)}deg)`;
     leftDeg = 0;
+    rightBar.style.transform = `rotate(${Math.round(rightDeg)}deg)`;
+    leftBar.style.transform = `rotate(${Math.round(leftDeg)}deg)`;
     started = false;
     secondsTimer = timer;
     clearInterval(timeInterval);
@@ -78,8 +78,8 @@ function sessionTime() {
     s = timer - m * 60;
 }
 function timeCountdown() {
-    if (!suspend) {
-        timeInterval = setInterval(() => {
+    timeInterval = setInterval(() => {
+            if (!suspend) {
 
             if (s < 10) {
                 s = `0${s}`;
@@ -105,20 +105,20 @@ function timeCountdown() {
             }
 
             s--;
-
+         
+        }   else {
+            return;
+        } 
         }, 1000);
-    } else {
-        clearInterval(timeInterval);
-    }
 }
 function barFill() {
 
     secondsTimer = timer;
     const onePercent = (1 / 100) * timer;
 
-    if (!suspend) {
-
+  
         fillInterval = setInterval(() => {
+            if (!suspend) {
 
             if (secondsTimer % onePercent === 0 && secondsTimer !== timer) {
 
@@ -143,14 +143,17 @@ function barFill() {
                     rightBar.style.transform = `rotate(${Math.round(rightDeg)}deg)`;
 
                     leftBar.style.transform = `rotate(${Math.round(leftDeg)}deg)`;
+                    
+                    clearInterval(fillInterval);
+                    timerStart();        
 
-                    timerStart();
 
                 }
             }
             secondsTimer--;
+        } 
+            else {
+            return;
+            }
         }, 1000);
-    } else {
-        clearInterval(fillInterval);
-    }
 }
