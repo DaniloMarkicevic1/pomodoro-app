@@ -29,24 +29,24 @@ function timerStart() {
         suspend = false;
         started = true;
         sessionTime();
-        barFill(timer);
-        timeCountdown(timer);
+        barFill();
+        timeCountdown();
     }
     else {
-        pauseTime()
+        suspend = false;
     }
 }
 function pauseTime() {
 
-    if (suspend) {
+    if (suspend && started) {
         suspend = false;
     } else {
         suspend = true;
     }
-
-    barFill(timer);
-    timeCountdown(timer);
+    barFill();
+    timeCountdown();
 }
+
 function stopAll() {
     timerText.textContent = `25:00`;
     timer = focusTimer;
@@ -59,6 +59,7 @@ function stopAll() {
     clearInterval(timeInterval);
     clearInterval(fillInterval);
 }
+
 function sessionTime() {
 
     if (sessionCount % 8 === 0) {
@@ -72,7 +73,6 @@ function sessionTime() {
     } else if (sessionCount % 2 === 0) {
 
         timer = pauseTimer;
-
     }
     m = timer / 60;
     s = timer - m * 60;
