@@ -118,17 +118,13 @@ function barFill() {
 
                     rightDeg += 3.6;
 
-                    rightBar.style.transform = `rotate(${Math.round(
-                        rightDeg
-                    )}deg)`;
+                    rightBar.style.transform = `rotate(${Math.round(rightDeg)}deg)`;
 
                 } else if (Math.round(leftDeg) < 180) {
 
                     leftDeg += 3.6;
 
-                    leftBar.style.transform = `rotate(${Math.round(
-                        leftDeg
-                    )}deg)`;
+                    leftBar.style.transform = `rotate(${Math.round(leftDeg)}deg)`;
 
                 }
 
@@ -136,13 +132,9 @@ function barFill() {
                     rightDeg = 0;
                     leftDeg = 0;
 
-                    rightBar.style.transform = `rotate(${Math.round(
-                        rightDeg
-                    )}deg)`;
+                    rightBar.style.transform = `rotate(${Math.round(rightDeg)}deg)`;
 
-                    leftBar.style.transform = `rotate(${Math.round(
-                        leftDeg
-                    )}deg)`;
+                    leftBar.style.transform = `rotate(${Math.round(leftDeg)}deg)`;
 
                     timerStart();
 
