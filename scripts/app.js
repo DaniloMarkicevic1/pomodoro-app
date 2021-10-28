@@ -20,30 +20,43 @@ let leftDeg = 0;
 let secondsTimer;
 let suspend = false;
 let started = false;
+
 start.addEventListener('click', timerStart);
 stop.addEventListener('click', stopAll);
 pause.addEventListener('click', pauseTime);
-
+console.log(stop.classList[2]);
+function toggleBtn() {
+    if (start.classList[2] == 'hide') {
+        stop.classList.add('hide');
+        pause.classList.add('hide');
+        start.classList.remove('hide');
+    } else {
+        stop.classList.remove('hide');
+        pause.classList.remove('hide');
+        start.classList.add('hide');
+    }
+}
 function timerStart() {
-    if(started === false) {
+    if (started === false) {
         suspend = false;
         started = true;
+        toggleBtn();
         sessionTime();
         barFill();
         timeCountdown();
-    }
-    else {
+    } else {
         suspend = false;
     }
 }
-function pauseTime() {
 
+function pauseTime() {
     if (suspend) {
+        pause.textContent = `Pause`;
         suspend = false;
     } else {
+        pause.textContent = `Continue`;
         suspend = true;
     }
-
 }
 
 function stopAll() {
@@ -56,31 +69,26 @@ function stopAll() {
     leftBar.style.transform = `rotate(${Math.round(leftDeg)}deg)`;
     started = false;
     secondsTimer = timer;
+    toggleBtn();
     clearInterval(timeInterval);
     clearInterval(fillInterval);
 }
 
 function sessionTime() {
-
     if (sessionCount % 8 === 0) {
-
         timer = longPauseTimer;
-
     } else if (sessionCount % 2 !== 0) {
-
         timer = focusTimer;
-
     } else if (sessionCount % 2 === 0) {
-
         timer = pauseTimer;
     }
     m = timer / 60;
     s = timer - m * 60;
 }
+
 function timeCountdown() {
     timeInterval = setInterval(() => {
-            if (!suspend) {
-
+        if (!suspend) {
             if (s < 10) {
                 s = `0${s}`;
             }
@@ -92,11 +100,9 @@ function timeCountdown() {
             }
 
             if (m == 0 && s == 0) {
-
                 sessionCount++;
                 clearInterval(timeInterval);
                 timerStart();
-                
             }
 
             if (s == 0) {
@@ -105,55 +111,52 @@ function timeCountdown() {
             }
 
             s--;
-         
-        }   else {
+        } else {
             return;
-        } 
-        }, 1000);
+        }
+    }, 1000);
 }
-function barFill() {
 
+function barFill() {
     secondsTimer = timer;
     const onePercent = (1 / 100) * timer;
 
-  
-        fillInterval = setInterval(() => {
-            if (!suspend) {
-
+    fillInterval = setInterval(() => {
+        if (!suspend) {
             if (secondsTimer % onePercent === 0 && secondsTimer !== timer) {
-
                 if (Math.round(rightDeg) < 180) {
-
                     rightDeg += 3.6;
 
-                    rightBar.style.transform = `rotate(${Math.round(rightDeg)}deg)`;
-
+                    rightBar.style.transform = `rotate(${Math.round(
+                        rightDeg
+                    )}deg)`;
                 } else if (Math.round(leftDeg) < 180) {
-
                     leftDeg += 3.6;
 
-                    leftBar.style.transform = `rotate(${Math.round(leftDeg)}deg)`;
-
+                    leftBar.style.transform = `rotate(${Math.round(
+                        leftDeg
+                    )}deg)`;
                 }
 
                 if (Math.round(leftDeg) >= 180) {
                     rightDeg = 0;
                     leftDeg = 0;
 
-                    rightBar.style.transform = `rotate(${Math.round(rightDeg)}deg)`;
+                    rightBar.style.transform = `rotate(${Math.round(
+                        rightDeg
+                    )}deg)`;
 
-                    leftBar.style.transform = `rotate(${Math.round(leftDeg)}deg)`;
-                    
+                    leftBar.style.transform = `rotate(${Math.round(
+                        leftDeg
+                    )}deg)`;
+
                     clearInterval(fillInterval);
-                    timerStart();        
-
-
+                    timerStart();
                 }
             }
             secondsTimer--;
-        } 
-            else {
+        } else {
             return;
-            }
-        }, 1000);
+        }
+    }, 1000);
 }
