@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="styles/css/css.css" />
+        <title>Pomodoro-App</title>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Pomodoro App</h1>
+            <p>Sessions Finished: 0</p>
+            <div class="circleContainer">
+                <div class="innerCircle"></div>
+                <span class="timer">25:00</span>
+                <div class="circle">
+                    <div class="bar left">
+                        <div class="progress"></div>
+                    </div>
+                    <div class="bar right">
+                        <div class="progress"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="commands">
+                <button class="btn pause">Pause</button>
+                <button class="btn stop">Stop</button>
+                <button class="btn start">Start</button>
+            </div>
+        </div>
+        <script src="./scripts/app.js"></script>
+    </body>
+</html>

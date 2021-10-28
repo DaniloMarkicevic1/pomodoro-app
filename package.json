@@ -1,0 +1,21 @@
+{
+    "name": "pomodoro-app",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "watch": "sass --watch styles/styles.scss styles/css/css.css",
+        "format": "prettier --write \"**/*.{js,scss}\"",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/DaniloMarkicevic1/pomodoro-app.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/DaniloMarkicevic1/pomodoro-app/issues"
+    },
+    "homepage": "https://github.com/DaniloMarkicevic1/pomodoro-app#readme"
+}
