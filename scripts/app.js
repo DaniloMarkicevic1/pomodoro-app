@@ -24,23 +24,14 @@ let started = false;
 start.addEventListener('click', timerStart);
 stop.addEventListener('click', stopAll);
 pause.addEventListener('click', pauseTime);
-console.log(stop.classList[2]);
-function toggleBtn() {
-    if (start.classList[2] == 'hide') {
-        stop.classList.add('hide');
-        pause.classList.add('hide');
-        start.classList.remove('hide');
-    } else {
-        stop.classList.remove('hide');
-        pause.classList.remove('hide');
-        start.classList.add('hide');
-    }
-}
+
 function timerStart() {
     if (started === false) {
         suspend = false;
         started = true;
-        toggleBtn();
+        stop.classList.remove('hide');
+        pause.classList.remove('hide');
+        start.classList.add('hide');
         sessionTime();
         barFill();
         timeCountdown();
@@ -69,16 +60,22 @@ function stopAll() {
     leftBar.style.transform = `rotate(${Math.round(leftDeg)}deg)`;
     started = false;
     secondsTimer = timer;
-    toggleBtn();
     clearInterval(timeInterval);
     clearInterval(fillInterval);
+    stop.classList.add('hide');
+    pause.classList.add('hide');
+    start.classList.remove('hide');
 }
 
 function sessionTime() {
+    console.log(sessionCount);
     if (sessionCount % 8 === 0) {
         timer = longPauseTimer;
     } else if (sessionCount % 2 !== 0) {
         timer = focusTimer;
+        sessionsFinished.textContent = `Sessions Finished: ${
+            sessionCount / 2 - 0.5
+        }`;
     } else if (sessionCount % 2 === 0) {
         timer = pauseTimer;
     }
@@ -102,6 +99,7 @@ function timeCountdown() {
             if (m == 0 && s == 0) {
                 sessionCount++;
                 clearInterval(timeInterval);
+                started = false;
                 timerStart();
             }
 
@@ -151,7 +149,7 @@ function barFill() {
                     )}deg)`;
 
                     clearInterval(fillInterval);
-                    timerStart();
+                    // timerStart();
                 }
             }
             secondsTimer--;
