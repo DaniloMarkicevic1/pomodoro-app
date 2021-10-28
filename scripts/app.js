@@ -19,15 +19,22 @@ let rightDeg = 0;
 let leftDeg = 0;
 let secondsTimer;
 let suspend = false;
+let started = false;
 start.addEventListener('click', timerStart);
 stop.addEventListener('click', stopAll);
 pause.addEventListener('click', pauseTime);
 
 function timerStart() {
-    sessionTime();
-    barFill(timer);
-    timeCountdown(timer);
-    suspend = false;
+    if(started === false) {
+        suspend = false;
+        started = true;
+        sessionTime();
+        barFill(timer);
+        timeCountdown(timer);
+    }
+    else {
+        pauseTime()
+    }
 }
 function pauseTime() {
 
@@ -47,6 +54,7 @@ function stopAll() {
     rightDeg = 0;
     rightBar.style.transform = `rotate(${Math.round(rightDeg)}deg)`;
     leftDeg = 0;
+    started = false;
     secondsTimer = timer;
     clearInterval(timeInterval);
     clearInterval(fillInterval);
