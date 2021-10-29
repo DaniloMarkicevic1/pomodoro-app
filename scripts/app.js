@@ -68,7 +68,6 @@ function stopAll() {
 }
 
 function sessionTime() {
-    console.log(sessionCount);
     if (sessionCount % 8 === 0) {
         timer = longPauseTimer;
     } else if (sessionCount % 2 !== 0) {
@@ -79,6 +78,7 @@ function sessionTime() {
     } else if (sessionCount % 2 === 0) {
         timer = pauseTimer;
     }
+
     m = timer / 60;
     s = timer - m * 60;
 }
@@ -121,7 +121,10 @@ function barFill() {
 
     fillInterval = setInterval(() => {
         if (!suspend) {
-            if (secondsTimer % onePercent === 0 && secondsTimer !== timer) {
+            if (
+                (secondsTimer % onePercent === 0 && sessionCount !== 1) ||
+                (secondsTimer % onePercent === 0 && secondsTimer !== timer)
+            ) {
                 if (Math.round(rightDeg) < 180) {
                     rightDeg += 3.6;
 
@@ -149,7 +152,6 @@ function barFill() {
                     )}deg)`;
 
                     clearInterval(fillInterval);
-                    // timerStart();
                 }
             }
             secondsTimer--;

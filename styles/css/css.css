@@ -82,6 +82,11 @@
   grid-template-areas: "pause stop" "start start";
   gap: 5px;
 }
+@media screen and (min-width: 768px) {
+  * body .container .commands {
+    padding: 50px 100px 200px;
+  }
+}
 * body .container .commands .btn {
   padding: 10px;
   border: 0;
