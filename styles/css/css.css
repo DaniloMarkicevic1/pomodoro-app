@@ -1,0 +1,111 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+* body {
+  background-color: #09379b;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+* body .container {
+  width: 100%;
+  height: 100%;
+  max-width: 700px;
+  border-radius: 5px;
+  background-color: darkblue;
+  padding: 20px;
+  text-align: center;
+  color: #e7e71d;
+}
+* body .container h1 {
+  padding: 0 0 50px 0;
+}
+* body .container p {
+  padding: 0 0 50px 0;
+}
+* body .container .circleContainer {
+  position: relative;
+  margin: 0 auto;
+  height: 100px;
+  width: 100px;
+}
+* body .container .circleContainer .innerCircle {
+  position: absolute;
+  z-index: 6;
+  top: 50%;
+  left: 50%;
+  height: 80px;
+  width: 80px;
+  margin: -40px 0 0 -40px;
+  background: #09379b;
+  border-radius: 100%;
+}
+* body .container .circleContainer .timer {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  font-size: 18px;
+  font-weight: 500;
+  color: #e7e71d;
+}
+* body .container .circleContainer .circle .bar {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: #110350;
+  border-radius: 100%;
+  -webkit-border-radius: 100%;
+  clip: rect(0px, 100px, 100px, 50px);
+}
+* body .container .circleContainer .circle .bar .progress {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  border-radius: 100%;
+  -webkit-border-radius: 100%;
+  clip: rect(0px, 50px, 100px, 0px);
+  background: #e7e71d;
+}
+* body .container .circleContainer .circle .left .progress {
+  z-index: 1;
+}
+* body .container .circleContainer .circle .right {
+  transform: rotate(180deg);
+  z-index: 3;
+}
+* body .container .commands {
+  padding: 50px 20px 200px;
+  display: grid;
+  grid-template-areas: "pause stop" "start start";
+  gap: 5px;
+}
+@media screen and (min-width: 768px) {
+  * body .container .commands {
+    padding: 50px 100px 200px;
+  }
+}
+* body .container .commands .btn {
+  padding: 10px;
+  border: 0;
+  border-radius: 7px;
+  background-color: #4d0080;
+  color: #e7e71d;
+  font-size: 24px;
+}
+* body .container .commands .hide {
+  display: none;
+}
+* body .container .commands .stop {
+  grid-area: stop;
+}
+* body .container .commands .pause {
+  grid-area: pause;
+}
+* body .container .commands .start {
+  grid-area: start;
+}
+
+/*# sourceMappingURL=css.css.map */

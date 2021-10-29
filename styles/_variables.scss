@@ -1,0 +1,21 @@
+$colors: (
+    white: #fff,
+    black: #000,
+    bodyBg: darkblue,
+    containerBg: rgb(9, 55, 155),
+    circleBg: #b300fa,
+    circleFill: rgb(255, 251, 0),
+    circleEmpty: rgb(89, 196, 231),
+    btnBg: rgb(77, 0, 128),
+    text: rgb(231, 231, 29),
+    circleBarBg: rgb(17, 3, 80),
+);
+
+$font: (
+    size: (
+        small: 14px,
+        medium: 18px,
+        large: 24px,
+    ),
+);
+$btnRadius: 7px;
